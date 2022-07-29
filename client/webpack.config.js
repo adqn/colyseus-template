@@ -5,6 +5,9 @@ module.exports = {
   mode: "development",
   devtool: "inline-source-map",
   entry: "./src/index.tsx",
+  devServer: {
+    static: "../dist",
+  },
   module: {
     rules: [
       {
@@ -28,7 +31,10 @@ module.exports = {
   },
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "../dist"),
     clean: true,
+  },
+  optimization: {
+    runtimeChunk: "single",
   },
 };
