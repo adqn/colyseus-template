@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "workspaces": [
+    "src/**/*"
+  ],
+  "scripts": {
+    "client": "yarn workspace client start",
+    "server": "ts-node-dev --respawn --transpile-only src/server/index.ts",
+    "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  },
+  "dependencies": {
+    "concurrently": "^7.3.0",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.7.4"
+  }
+}
