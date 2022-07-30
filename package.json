@@ -4,9 +4,6 @@
     "src/**/*"
   ],
   "scripts": {
-    "install_client": "yarn workspace client install",
-    "install_server": "yarn -W install",
-    "install": "yarn install_server && yarn install_client",
     "client": "yarn workspace client start",
     "server": "ts-node-dev --respawn --transpile-only src/server/index.ts",
     "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
