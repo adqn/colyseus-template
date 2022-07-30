@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import Colyseus, { Room } from "colyseus.js";
 import * as styled from "styled-components";

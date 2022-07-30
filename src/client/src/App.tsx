@@ -1,5 +1,6 @@
 import React from "react";
+import { StateHandlerRoom } from "./components/StateHandler";
 
-const App = () => <h1>Did this also from scratch!</h1>;
+const App = () => <StateHandlerRoom />;
 
 export default App;
