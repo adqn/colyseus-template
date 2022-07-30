@@ -75,7 +75,7 @@ export class StateHandlerRoom extends Room<State> {
             this.state.collectItem(client.sessionId, data);
         })
 
-        for (let i = 0; i < 1; ++i) {
+        for (let i = 0; i < 10; ++i) {
             this.state.createItem(`apple_${i}`);
         }
     }

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-// import Colyseus, { Room, Client } from "colyseus.js";
 import * as Colyseus from "colyseus.js";
 import { Schema } from "@colyseus/schema";
-import * as styled from "styled-components";
+import styled from "styled-components";
+import "../styles/playableArea.css";
 
 interface Player extends Schema {
   x: number;
@@ -22,46 +22,10 @@ interface Object {
   width: number;
 }
 
-/*
-      .player {
-        width: 100px;
-        height: 100px;
-        position: absolute;
-        padding-top: 24px;
-        box-sizing: border-box;
-        left: 0;
-        top: 0;
-      }
-
-      #messages {
-          width: 400px;
-          height: 200px;
-          position: absolute;
-          right: 0px;
-          bottom: 0px;
-          border: 1px solid black;
-      }
-
-      #form {
-          position: absolute;
-          right: 0px;
-          bottom: 205px;
-      }
-
-      .item {
-          position: absolute;
-          width: 20px;
-          height: 20px;
-          background: red;
-          left: 0;
-          top: 0;
-}
-*/
-
 export const StateHandlerRoom = () => {
   const client = new Colyseus.Client("ws://localhost:2567");
 
-  var room: Colyseus.Room;
+  let room: Colyseus.Room;
 
   type Players = { [index: string]: any };
   type Items = { [index: string]: any };
@@ -79,7 +43,7 @@ export const StateHandlerRoom = () => {
 
       // add items
       room.state.items.onAdd = function (item: Item, itemId: string) {
-        var dom = document.createElement("div");
+        let dom = document.createElement("div");
         console.log(itemId);
         dom.className = "item";
         dom.style.left = item.x + "px";
@@ -91,7 +55,7 @@ export const StateHandlerRoom = () => {
 
       // listen to patches coming from the server
       room.state.players.onAdd = function (player: Player, sessionId: string) {
-        var dom = document.createElement("div");
+        let dom = document.createElement("div");
         dom.className = "player";
         dom.style.left = player.x + "px";
         dom.style.top = player.y + "px";
@@ -194,13 +158,13 @@ export const StateHandlerRoom = () => {
     room.send("move", { x: -1 });
   }
 
-  return <div>??</div>;
+  return <div></div>;
 };
 
-// const GameObject = styled.div`
-//   width: ${(props: any) => props.width ?? "20px"};
-//   height: ${(props: any) => props.width ?? "20px"};
-//   background: ${(props: any) => props.background ?? "black"};
-//   position: absolute;
-//   box-sizing: border-box;
-// `;
+const GameObject = styled.div`
+  width: ${(props: any) => props.width ?? "20px"};
+  height: ${(props: any) => props.width ?? "20px"};
+  background: ${(props: any) => props.background ?? "black"};
+  position: absolute;
+  box-sizing: border-box;
+`;
