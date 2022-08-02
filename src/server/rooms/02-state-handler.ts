@@ -7,25 +7,11 @@ export class Player extends Schema {
 
     @type("number")
     y = Math.floor(Math.random() * 200);
-
-    @type("number")
-    score = 0;
-}
-
-export class Item extends Schema {
-    @type("number")
-    x = Math.floor(Math.random() * 300);
-
-    @type("number")
-    y = Math.floor(Math.random() * 300);
 }
 
 export class State extends Schema {
     @type({ map: Player })
     players = new MapSchema<Player>();
-
-    @type({ map: Item })
-    items = new MapSchema<Item>();
 
     something = "This attribute won't be sent to the client-side";
 
@@ -45,16 +31,6 @@ export class State extends Schema {
             this.players.get(sessionId).y += movement.y * 10;
         }
     }
-
-    createItem(itemId: string) {
-        this.items.set(itemId, new Item());
-    }
-
-    collectItem(sessionId: string, itemId: any) {
-        this.players.get(sessionId).score += 1;
-        console.log("Player 1 score: ", this.players.get(sessionId).score);
-        this.items.delete(itemId);
-    }
 }
 
 export class StateHandlerRoom extends Room<State> {
@@ -69,15 +45,6 @@ export class StateHandlerRoom extends Room<State> {
             // console.log("StateHandlerRoom received message from", client.sessionId, ":", data);
             this.state.movePlayer(client.sessionId, data);
         });
-
-        this.onMessage("collect_item", (client, data) => {
-            console.log("Item collected: ", data);
-            this.state.collectItem(client.sessionId, data);
-        })
-
-        for (let i = 0; i < 10; ++i) {
-            this.state.createItem(`apple_${i}`);
-        }
     }
 
     onAuth(client, options, req) {
