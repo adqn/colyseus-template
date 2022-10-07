@@ -5,7 +5,7 @@ Basic Colyseus setup using React and Webpack. Runs client and server in one go.
 ## Install and run:
 ```
 git clone https://github.com/adqn/colyseus-template.git
-cd colyseus-stuff
+cd colyseus-template
 yarn install
 yarn start
 ```
